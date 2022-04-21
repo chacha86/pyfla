@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class="container">
+<div class="card">
+    <h5 class="card-header border-top p-4">게시물 상세</h5>
+    <div class="card-body border-top mt-3">
+      <h5 class="card-title">{{article.article_id}}</h5>
+      <div>
+        <p class="card-text p-3 border-top h-50">{{article.title}}</p>
+      </div>
+      <p class="card-text border-top">{{article.member.nick_name}}</p>
+    </div>
+  </div>
+  <a href="" class="btn btn-sm btn-outline-secondary">수정</a>
+  <a href="" class="btn btn-sm btn-outline-secondary">삭제</a>
+</div>
+{% endblock %}

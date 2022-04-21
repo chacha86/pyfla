@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-3">
+    <h1>게시물 목록</h1> 
+    {% if article_list %}
+    <table class="table table-striped">
+        <thead class="table-dark ">
+            <tr class="text-center">
+                <th scope="col" class="p-3">번호</th>
+                <th scope="col" class="w-50 p-3">제목</th>
+                <th scope="col" class="p-3">작성자</th>
+                <th scope="col" class="p-3">작성일</th>
+                <th scope="col" class="p-3">조회수</th>
+            </tr>
+        </thead>
+        </tbody>
+            {% for article in article_list.items %}
+            <tr>
+                <td class="text-center">{{article.article_id}}</td>
+                <td>
+                    <a href="{{url_for('test.detail_test', article_id=article.article_id)}}">{{article.title}}</a>
+                </td>
+                <td class="text-center">{{article.reg_date}}</td>
+                <td class="text-center">{{article.hit}}</td>
+                <td class="text-center">{{article.member.nick_name}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>게시물이 존재하지 않습니다.</p>
+    {% endif %}
+    <nav aria-label="Page navigation example"> 
+        <ul class="pagination justify-content-center">
+            {% if article_list.has_prev %}
+                <li class="page-item"><a class="page-link" href="{{url_for('test.list_test', page=article_list.prev_num)}}">이전</a></li>
+            {% endif %}
+            {% for page in article_list.iter_pages(2,2,3,2) %}
+                {% if page %}
+                {% if page != article_list.page %}
+                    <li class="page-item"><a class="page-link" href="{{url_for('test.list_test', page=page)}}">{{ page }}</a></li>
+                {% else %}
+                    <li class="page-item active"><a class="page-link" href="{{url_for('test.list_test', page=page)}}">{{ page }} </a></li>
+                {% endif %}
+                {% else %}
+                <span class=ellipsis>…</span>
+                {% endif %}
+            {% endfor %}
+            {% if article_list.has_next %}
+                <li class="page-item"><a class="page-link" href="{{url_for('test.list_test', page=article_list.next_num)}}">다음</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <form action="{{url_for('test.list_test')}}">
+        <div class="row g-3">
+            <div class="col-sm-3">
+                <a href="{{url_for('test.article_form')}}" class="ms-3">글쓰기</a>
+            </div>
+            <div class="input-group w-25" style="position: absolute; left: 50%; transform: translateX(-50%);">
+                <input type="text" class="form-control" placeholder="Search" id="keyword" name="keyword" aria-label="Search" aria-describedby="button-addon2" value="{{keyword}}">
+                <input class="btn btn-outline-secondary" type="submit" value="Search">
+            </div> 
+        </div>
+    </form>
+</div>
+
+{% endblock %}

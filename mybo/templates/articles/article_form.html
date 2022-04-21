@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+{% block content%}
+<div class="container">
+    <h3>게시물 등록</h3>
+    <form method="post">
+        <!-- 오류표시 Start -->
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for field, errors in form.errors.items() %}
+            <strong>{{ form[field].label }}</strong>
+            <ul>
+                {% for error in errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {{form.csrf_token}}
+        <div class="mb-3">
+            <label class="form-label">제목</label>
+            <input class="form-control" type="text" name="title" id="title" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">내용</label>
+            <div>
+                <textarea class="form-control" name="body" id="body"></textarea>
+            </div>
+        </div>
+        <input type="hidden" name="member_id" id="member_id" value="1">
+        <input class="btn btn-primary" type="submit" value="등록">
+    </form>
+</div>
+{% endblock%}
