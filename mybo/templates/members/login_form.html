@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h5 class="my-3 border-bottom pb-2">로그인</h5>
+    <form method="post">
+        {{ form.csrf_token }}
+        {% include "form_errors.html" %}
+        <div class="mb-3">
+            <label for="login_id">사용자 이름</label>
+            <input type="text" class="form-control" name="login_id" id="login_id"
+                   value="{{ form.login_id.data or '' }}">
+        </div>
+        <div class="mb-3">
+            <label for="login_pw">비밀번호</label>
+            <input type="password" class="form-control" name="login_pw" id="login_pw"
+                   value="{{ form.login_pw.data or '' }}">
+        </div>
+        <button type="submit" class="btn btn-primary">로그인</button>
+    </form>
+</div>
+{% endblock %}

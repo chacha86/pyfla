@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h5 class="my-3 border-bottom pb-2">계정생성</h5>
+    <form method="post">
+        {{ form.csrf_token }}
+        {% include "form_errors.html" %}
+        <div class="mb-3">
+            <label for="login_id">아이디</label>
+            <input type="text" class="form-control" name="login_id" id="login_id"
+                   value="{{ form.login_id.data or '' }}">
+        </div>
+        <div class="mb-3">
+            <label for="login_pw">비밀번호</label>
+            <input type="password" class="form-control" name="login_pw" id="login_pw"
+                   value="{{ form.login_pw.data or '' }}">
+        </div>
+        <div class="mb-3">
+            <label for="login_pw2">비밀번호 확인</label>
+            <input type="password" class="form-control" name="login_pw2" id="login_pw2"
+                   value="{{ form.login_pw2.data or '' }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="real_name">사용자 이름</label>
+            <input type="text" class="form-control" name="real_name" id="real_name"
+                   value="{{ form.real_name.data or '' }}">
+        </div>
+        <div class="mb-3">
+            <label for="nick_name">nickname</label>
+            <input type="text" class="form-control" name="nick_name" id="nick_name"
+                   value="{{ form.nick_name.data or '' }}">
+        </div>
+        <button type="submit" class="btn btn-primary">생성하기</button>
+    </form>
+</div>
+{% endblock %}
