@@ -32,9 +32,11 @@ def create_app() :
     # if Person.query.count() == 0 :
     #     data_init2(db)
         
-    from .controller import home_controller, test_views
+    from .controller import home_controller, test_views, article_views, member_views
 
     app.register_blueprint(home_controller.bp)
+    app.register_blueprint(article_views.bp)
+    app.register_blueprint(member_views.bp)
     # app.register_blueprint(question_controller.bp)
     # app.register_blueprint(answer_views.bp)
     app.register_blueprint(test_views.bp)
