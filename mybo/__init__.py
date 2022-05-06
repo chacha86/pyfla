@@ -4,14 +4,14 @@ from flask_sqlalchemy import SQLAlchemy
 import pymysql
 
 pymysql.install_as_MySQLdb()
-import myconfig
 
 db = None
 migrate = None 
 
 def create_app() :    
     app = Flask(__name__)
-    app.config.from_object(myconfig)
+    # app.config.from_object(myconfig)
+    app.config.from_envvar('APP_CONFIG_FILE')
     # BASE_DIR = os.path.dirname(__file__)
 
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{}'.format(os.path.join(BASE_DIR, 'mybo.db'))
