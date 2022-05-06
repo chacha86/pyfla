@@ -1,7 +1,7 @@
 from datetime import datetime
 from mybo import db
 from mybo.models import *
-from flask import Blueprint, render_template, request, url_for
+from flask import Blueprint, render_template, request, url_for, flash
 from werkzeug.utils import redirect
 from mybo.forms.article_forms import ArticleForm
 
@@ -12,6 +12,10 @@ def _list() :
     keyword = request.args.get('keyword', type=str, default='')
     page = request.args.get('page', type=int, default=1)
     article_list = db.session.query(Article).order_by(Article.reg_date.desc())
+    flash('error1')
+    flash('error2')
+    flash('error3')
+    flash('error4')
     if keyword != None:
         article_list = db.session.query(Article).filter(Article.title.like('%{}%'.format(keyword)))
     print(article_list)

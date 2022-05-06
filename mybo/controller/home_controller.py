@@ -5,7 +5,7 @@ bp = Blueprint('home', __name__, url_prefix='/')
 
 @bp.route('/')
 def index() :
-    return redirect(url_for('test.list_test'))
+    return redirect(url_for('article._list'))
 
 @bp.route('/hello')
 def hello() :
